@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
+import { Analytics } from '@vercel/analytics/react';
 // Core components
 import AnimatedBackground from './components/AnimatedBackground'
 import CustomCursor, { TouchRipple } from './components/CustomCursor'
@@ -139,6 +139,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Analytics />
     </>
   )
 }
