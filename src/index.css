@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #080312;
+  --bg-secondary: #12071D;
+  --purple: #8B5CF6;
+  --pink: #EC4899;
+  --lavender: #C084FC;
+  --rose: #F9A8D4;
+  --white-soft: #FAFAFF;
+  --glow: #D8B4FE;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--white-soft);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--purple), var(--pink));
+  border-radius: 2px;
+}
+
+/* ============ SELECTION ============ */
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #fff;
+}
+
+/* ============ CUSTOM CURSOR ============ */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  box-shadow: 0 0 12px var(--pink), 0 0 24px rgba(236, 72, 153, 0.5);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(139, 92, 246, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  backdrop-filter: blur(1px);
+}
+
+.cursor-expanded .cursor-ring {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(236, 72, 153, 0.8);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* ============ GLASS ============ */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-purple {
+  background: rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* ============ GRADIENT TEXT ============ */
+.gradient-text {
+  background: linear-gradient(135deg, var(--lavender), var(--pink), var(--glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f9a8d4, #c084fc, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============ GLOW EFFECTS ============ */
+.glow-purple {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+.glow-pink {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.8), 0 0 40px rgba(192, 132, 252, 0.4);
+}
+
+/* ============ NOISE TEXTURE ============ */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+}
+
+/* ============ SECTION BASE ============ */
+.section-base {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ============ MAGNETIC BUTTON ============ */
+.magnetic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+.magnetic-btn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--lavender), var(--pink), var(--purple));
+  z-index: -2;
+  filter: blur(8px);
+  opacity: 0.6;
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+.magnetic-btn:hover::after {
+  opacity: 1;
+  filter: blur(12px);
+}
+
+/* ============ LOADER ============ */
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 99997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(3deg); }
+  66% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(20px) translateY(-30px); }
+  50% { transform: translateX(-10px) translateY(-50px); }
+  75% { transform: translateX(-25px) translateY(-20px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 60%; }
+  75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+}
+
+@keyframes firefly {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateX(var(--fx)) translateY(var(--fy)); opacity: 0; }
+}
+
+@keyframes particleFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes revealMask {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes waxSeal {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+  80% { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes paperUnfold {
+  0% { transform: scaleY(0) perspective(500px) rotateX(-90deg); opacity: 0; transform-origin: top center; }
+  100% { transform: scaleY(1) perspective(500px) rotateX(0deg); opacity: 1; transform-origin: top center; }
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100px) rotate(0deg) translateX(0); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg) translateX(var(--cx, 0px)); opacity: 0; }
+}
+
+@keyframes starGather {
+  0% { transform: translate(var(--sx), var(--sy)) scale(1); }
+  100% { transform: translate(0, 0) scale(0); opacity: 0; }
+}
+
+/* ============ UTILITY CLASSES ============ */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+.font-vibes { font-family: 'Great Vibes', cursive; }
+.font-grotesk { font-family: 'Space Grotesk', sans-serif; }
+
+.will-change-transform { will-change: transform; }
+.will-change-opacity { will-change: opacity; }
+
+/* ============ NAV ============ */
+.nav-orb {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+}
+
+/* ============ POLAROID ============ */
+.polaroid {
+  background: white;
+  padding: 12px 12px 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transform-origin: center;
+}
+
+/* ============ LIGHTBOX ============ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+}
+
+/* ============ VIDEO PLAYER ============ */
+.video-player-container {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ============ LETTER ============ */
+.letter-paper {
+  background: linear-gradient(135deg, rgba(249, 168, 212, 0.08), rgba(192, 132, 252, 0.08));
+  border: 1px solid rgba(249, 168, 212, 0.2);
+  border-radius: 4px;
+}
+
+/* ============ MASONRY ============ */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+/* ============ MOBILE TOUCH ============ */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+  .nav-orb {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* ============ PARALLAX LAYERS ============ */
+.parallax-layer {
+  position: absolute;
+  will-change: transform;
+}
+
+/* ============ CHAPTER DECORATIONS ============ */
+.chapter-number {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(80px, 12vw, 180px);
+  color: rgba(139, 92, 246, 0.08);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ============ HORIZONTAL SCROLL ============ */
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 24px;
+  padding: 24px 40px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+/* ============ CARD TILT ============ */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+.tilt-card-inner {
+  transform: translateZ(20px);
+}
+
+/* ============ PROGRESS BAR ============ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  z-index: 10000;
+  transform-origin: left;
+}
+
+/* ============ ENDING ============ */
+.ending-universe {
+  position: fixed;
+  inset: 0;
+  z-index: 99996;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============ TOUCH RIPPLE ============ */
+.touch-ripple {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  animation: ripple 0.6s ease-out forwards;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+}
+
+/* ============ MUSIC PLAYER ============ */
+.music-player {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  z-index: 9998;
+}
+
+@media (max-width: 768px) {
+  .music-player {
+    bottom: 90px;
+    right: 20px;
+  }
+}
+
+/* ============ AURORA GRADIENT ============ */
+.aurora-bg {
+  background: linear-gradient(
+    -45deg,
+    #080312,
+    #12071D,
+    #1a0a2e,
+    #0d0520,
+    #150830,
+    #080312
+  );
+  background-size: 400% 400%;
+  animation: aurora 20s ease infinite;
+}
